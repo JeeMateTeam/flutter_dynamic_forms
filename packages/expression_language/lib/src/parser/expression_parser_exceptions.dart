@@ -10,41 +10,41 @@ abstract class ExpressionParserException implements Exception {
 }
 
 class InvalidSyntaxException extends ExpressionParserException {
-  InvalidSyntaxException(String message) : super(message);
+  InvalidSyntaxException(super.message);
 }
 
 class DivideByZeroException extends ExpressionParserException {
-  DivideByZeroException(String message) : super(message);
+  DivideByZeroException(super.message);
 }
 
 class NullReferenceException extends ExpressionParserException {
-  NullReferenceException(String message) : super(message);
+  NullReferenceException(super.message);
 }
 
 class UnknownExpressionTypeException extends ExpressionParserException {
-  UnknownExpressionTypeException(String message) : super(message);
+  UnknownExpressionTypeException(super.message);
 }
 
 class UnknownFunctionException extends ExpressionParserException {
-  UnknownFunctionException(String message) : super(message);
+  UnknownFunctionException(super.message);
 }
 
 class UnknownConstantTypeException extends ExpressionParserException {
-  UnknownConstantTypeException(String message) : super(message);
+  UnknownConstantTypeException(super.message);
 }
 
 class UnknownExpressionFactoryException extends ExpressionParserException {
-  UnknownExpressionFactoryException(String message) : super(message);
+  UnknownExpressionFactoryException(super.message);
 }
 
 class InvalidParameterException extends ExpressionParserException {
-  InvalidParameterException(String message) : super(message);
+  InvalidParameterException(super.message);
 }
 
 class InvalidParameterCount extends ExpressionParserException {
-  InvalidParameterCount(String message) : super(message);
+  InvalidParameterCount(super.message);
 }
 
 class InvalidRegularExpressionException extends ExpressionParserException {
-  InvalidRegularExpressionException(String message) : super(message);
+  InvalidRegularExpressionException(super.message);
 }

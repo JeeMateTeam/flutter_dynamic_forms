@@ -12,11 +12,11 @@ extension ExpressionExtensions<T> on Expression<T> {
       yield expression;
 
       var childExpressions = expression.getChildren();
-      childExpressions.forEach((e) {
+      for (var e in childExpressions) {
         if (!visitedExpressions.contains(e)) {
           stack.addLast(e);
         }
-      });
+      }
     }
   }
 

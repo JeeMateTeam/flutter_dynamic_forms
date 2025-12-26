@@ -1,17 +1,18 @@
 name: expression_language
 description: Library for parsing and evaluating simple expression language with additional references
-version: 1.0.1
+version: 1.0.2
 homepage: https://github.com/OndrejKunc/flutter_dynamic_forms
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: ">=3.10.0 <4.0.0"
 
 dependencies:
-  petitparser: any
-  rational: ^1.0.0
+  petitparser: ^7.0.1
+  rational: ^2.2.3
+  decimal: ^3.2.4
 
 dev_dependencies:
-  test: ^1.16.0
-  gherkin: ^1.1.5+1
-  glob: ^1.2.0
-  pedantic: ^1.11.0
+  test: ^1.28.0
+  gherkin: ^3.1.0
+  glob: ^2.1.3
+  flutter_lints : ^6.0.0

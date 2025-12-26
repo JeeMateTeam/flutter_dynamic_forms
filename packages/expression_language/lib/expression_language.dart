@@ -1,5 +1,3 @@
-library expression_language;
-
 export './src/grammar/expression_grammar_definition.dart';
 export './src/parser/expression_factory.dart';
 export './src/parser/expression_grammar_parser.dart';

@@ -1,8 +1,9 @@
 import 'dart:math';
+import 'package:rational/rational.dart';
+import 'package:decimal/decimal.dart' as rational_decimal;
 
 import 'package:expression_language/src/number_type/integer.dart';
 import 'package:expression_language/src/number_type/number.dart';
-import 'package:rational/rational.dart';
 
 class Decimal extends Number {
   Rational _rational;
@@ -29,15 +30,15 @@ class Decimal extends Number {
   }
 
   Decimal _convertToDecimal(Number number) {
-    Decimal _other;
+    Decimal other;
 
     if (number is Integer) {
-      _other = Decimal.fromInt(number.value);
+      other = Decimal.fromInt(number.value);
     } else {
-      _other = number as Decimal;
+      other = number as Decimal;
     }
 
-    return _other;
+    return other;
   }
 
   bool get isInteger => _rational.isInteger;
@@ -54,7 +55,7 @@ class Decimal extends Number {
   }
 
   @override
-  String toString() => _rational.toDecimalString();
+  String toString() => _rational.toDecimal(scaleOnInfinitePrecision: 10).toString();
 
   @override
   int compareTo(Number other) {
@@ -86,7 +87,7 @@ class Decimal extends Number {
 
   @override
   Integer operator ~/(Number other) =>
-      Decimal._fromRational(_rational ~/ _convertToDecimal(other)._rational)
+      Decimal._fromRational(Rational(_rational ~/ _convertToDecimal(other)._rational))
           .toInteger();
 
   @override
@@ -106,13 +107,13 @@ class Decimal extends Number {
       _rational >= _convertToDecimal(other)._rational;
 
   @override
-  bool get isNaN => _rational.isNaN;
+  bool get isNaN => false;
 
   @override
-  bool get isInfinite => _rational.isInfinite;
+  bool get isInfinite => false;
 
   @override
-  bool get isNegative => _rational.isNegative;
+  bool get isNegative =>  ((_rational.numerator.isNegative || _rational.denominator.isNegative) && (!_rational.numerator.isNegative || !_rational.denominator.isNegative));
 
   @override
   Number abs() => Decimal._fromRational(_rational.abs());
@@ -121,20 +122,20 @@ class Decimal extends Number {
   Integer get sign => Integer(_rational.signum);
 
   @override
-  Integer ceil() => Decimal._fromRational(_rational.ceil()).toInteger();
+  Integer ceil() => Decimal._fromRational(_rational.ceil().toRational()).toInteger();
 
   @override
-  Integer floor() => Decimal._fromRational(_rational.floor()).toInteger();
+  Integer floor() => Decimal._fromRational(_rational.floor().toRational()).toInteger();
 
   @override
   Number remainder(Number other) => Decimal._fromRational(
       _rational.remainder(Rational.parse(other.toString())));
 
   @override
-  Integer round() => Decimal._fromRational(_rational.round()).toInteger();
+  Integer round() => Decimal._fromRational(_rational.round().toRational()).toInteger();
 
   @override
-  Integer toInteger() => Integer(_rational.toInt());
+  Integer toInteger() => Integer(_rational.toBigInt().toInt());
 
   @override
   int toInt() => toInteger().value;
@@ -148,18 +149,18 @@ class Decimal extends Number {
 
   @override
   String toStringAsExponential([int? fractionDigits]) =>
-      _rational.toStringAsExponential(fractionDigits);
+      _rational.toDecimal().toStringAsExponential(fractionDigits ?? 0);
 
   @override
   String toStringAsFixed(int fractionDigits) =>
-      _rational.toStringAsFixed(fractionDigits);
+      _rational.toDecimal().toStringAsFixed(fractionDigits);
 
   @override
   String toStringAsPrecision(int precision) =>
-      _rational.toStringAsPrecision(precision);
+      _rational.toDecimal().toStringAsPrecision(precision);
 
   @override
-  Integer truncate() => Decimal._fromRational(_rational.truncate()).toInteger();
+  Integer truncate() => Decimal._fromRational(_rational.truncate().toRational()).toInteger();
 
   @override
   Number roundWithPrecision(int precision,

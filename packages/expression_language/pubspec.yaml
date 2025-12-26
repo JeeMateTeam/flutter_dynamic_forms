@@ -3,6 +3,7 @@ description: Library for parsing and evaluating simple expression language with 
 version: 1.0.2
 license: "MIT"
 homepage: https://github.com/OndrejKunc/flutter_dynamic_forms
+publish_to: https://dart.cloudsmith.io/jeemate-team/dart-package/
 
 environment:
   sdk: ">=3.10.0 <4.0.0"
